@@ -52,7 +52,7 @@ h2 {
 }
 
 #Weather {
-  min-width: 400px;
+  width: 400px;
   padding: 20px;
   border: 1px solid white;
   border-radius: 10px;
@@ -62,10 +62,36 @@ h2 {
 
 .Weather-location-input-div {
   margin: 20px 0 20px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Weather-location-input-div textarea {
+    margin: 5px 0 5px 0;
+    width: 260px;
+    height: 33px;
+    background: black;
+    border: 1px solid white;
+    color: white;
+    padding: 10px;
+}
+
+.Weather-location-input-div button {
+    width: 244px;
+    background: black;
+    color: white;
+    padding: 5px 0 5px 0;
+    cursor: pointer;
 }
 
 #Weather h3 {
   font-size: 21px;
+}
+
+.Weather-current-weather-div {
+  padding-bottom: 20px;
+  border-bottom: 1px solid white;
 }
 
 .Weather-weather-detail h3 {
@@ -100,6 +126,43 @@ h2 {
   margin-right: 10px;
 }
 
+.Weather-Table-individual-data {
+  display: flex;
+  justify-content: center;
+}
+
+.Weather-Table-individual-data p:first-of-type {
+  width: 50%;
+  padding: 5px 0 5px 0;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+}
+
+.Weather-Table-individual-data p:nth-of-type(2) {
+  width: 30%;
+  padding: 5px 0 5px 0;
+  border-left: 1px solid white;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+}
+
+.Weather-Table-individual-data:first-of-type p:first-of-type {
+    border-top: 1px solid white;
+}
+
+.Weather-Table-individual-data:first-of-type p:nth-of-type(2) {
+  border-top: 1px solid white;
+}
+
+.Weather-table-arrow-div {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 15px;
+}
+
+.Weather-table-arrow-div {
+  cursor: pointer;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
