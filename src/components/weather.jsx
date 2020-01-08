@@ -71,7 +71,10 @@ class Weather extends React.Component {
               <WeatherTable 
                 weatherInfo={this.state}
               />
-
+              <canvas 
+                id="weather-chart"
+                style={{ display: 'none' }}
+              ></canvas>
             </div>
               :
             <p>Please enter location to get weather information</p>

@@ -38,7 +38,7 @@ h2 {
 #App-widgets-div {
   display: flex;
   justify-content: center;
-  margin: 0 20px 0 20px;
+  margin: 0 20px 200px 20px;
 }
 
 #App-welcome {
@@ -61,7 +61,7 @@ h2 {
 }
 
 .Weather-location-input-div {
-  margin: 20px 0 20px 0;
+  padding: 20px 0 20px 0;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -83,6 +83,10 @@ h2 {
     color: white;
     padding: 5px 0 5px 0;
     cursor: pointer;
+}
+
+.Weather-weather-detail {
+  margin-top: 20px;
 }
 
 #Weather h3 {
@@ -162,6 +166,10 @@ h2 {
 
 .Weather-table-arrow-div {
   cursor: pointer;
+}
+
+.Weather-Table-tables-div {
+  margin-bottom: 20px;
 }
 
 @keyframes App-logo-spin {
