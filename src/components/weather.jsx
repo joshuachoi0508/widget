@@ -5,8 +5,10 @@ class Weather extends React.Component {
     super(props);
     this.state = {
       location: "",
+      weatherLocation: "",
       lat: "",
-      lng: ""
+      lng: "",
+      weather: {}
     }
   }
 
@@ -29,7 +31,10 @@ class Weather extends React.Component {
     fetch(`https://api.darksky.net/forecast/${process.env.REACT_APP_WEATHER_API_KEY}/${this.state.lat},${this.state.lng}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        this.setState({ 
+          weather: data,
+          weatherLocation: this.state.location
+        })
       })
   }
 
@@ -42,7 +47,7 @@ class Weather extends React.Component {
           className="Weather-location-input-div"
           onSubmit={e => this.getLatLong(e)}
         >
-          <p>Enter address</p>
+          <p>Enter Location</p>
           <input 
             onChange={(e) => this.setState({location: e.currentTarget.value})} 
             value={this.state.location}
@@ -50,6 +55,20 @@ class Weather extends React.Component {
           <button type="submit">Get Weather</button>
         </form>
 
+        <div className="Weather-weather-detail">
+          {this.state.weather.currently ? 
+            <div>
+              <h3>{this.state.weatherLocation}'s Weather Information</h3> 
+
+              <div className="Weather-current-weather-div">
+                <h4>Current Weather</h4>
+                <p>Temperature: {this.state.weather.currently.apparentTemperature}°F</p>
+              </div>
+            </div>
+              :
+            <p>Please enter location to get weather information</p>
+          }
+        </div>
       </div>
     );
   }

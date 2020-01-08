@@ -1,3 +1,10 @@
+body {
+  background-image: url('./assets/background.png');
+  background-size: cover;
+  height: 100vh;
+  color: white;
+}
+
 h1 {
   font-size: 50px;
   margin: 20px 0 20px 0;
@@ -34,11 +41,45 @@ h2 {
   margin: 0 20px 0 20px;
 }
 
-#Weather {
+#App-welcome {
+  border: 1px solid white;
+  width: fit-content;
+  margin: auto;
   padding: 20px;
-  border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 10px;
+  margin-top: 30px;
+  background: #00000061;
 }
+
+#Weather {
+  min-width: 400px;
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background: #000000b0;
+  margin-top: 30px;
+}
+
+.Weather-location-input-div {
+  margin: 20px 0 20px 0;
+}
+
+#Weather h3 {
+  font-size: 21px;
+}
+
+.Weather-weather-detail h3 {
+  margin-bottom: 20px;
+}
+
+.Weather-current-weather-div h4{
+  margin: 10px;
+}
+
+#Weather h4 {
+  font-size: 19px;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
