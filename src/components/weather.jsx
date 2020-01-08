@@ -10,8 +10,13 @@ class Weather extends React.Component {
       lat: "",
       lng: "",
       weather: {},
-      frame: ""
+      frame: "",
+      dataIdx: 0
     }
+
+    this.decrementIdx = this.decrementIdx.bind(this);
+    this.incrementIdx = this.incrementIdx.bind(this);
+    this.setFrame = this.setFrame.bind(this);
   }
 
   getLatLong(e){
@@ -39,6 +44,27 @@ class Weather extends React.Component {
       .then(data => {
         this.setState({ weather: data })
       })
+  }
+
+  setFrame(type) {
+    this.setState({ frame: type });
+  }
+
+  decrementIdx() {
+    let { dataIdx } = this.state;
+
+    dataIdx -= 6;
+    if (dataIdx <= 0) dataIdx = 0;
+    this.setState({ dataIdx });
+  }
+
+  incrementIdx() {
+    let { dataIdx } = this.state;
+    const maxIdx = this.state.weather[this.state.frame].data.length - 1;
+
+    dataIdx += 6;
+    if (dataIdx >= maxIdx) dataIdx = dataIdx -= 6;
+    this.setState({ dataIdx });
   }
 
   render() {
@@ -70,6 +96,9 @@ class Weather extends React.Component {
 
               <WeatherTable 
                 weatherInfo={this.state}
+                incrementIdx={this.incrementIdx}
+                decrementIdx={this.decrementIdx}
+                setFrame={this.setFrame}
               />
               <canvas 
                 id="weather-chart"
