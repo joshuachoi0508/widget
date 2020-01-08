@@ -1,3 +1,8 @@
+@keyframes button-color-change {
+  from { background: black; color: white; border: 1px solid white; }
+  to { background: white; color: black; border: 1px solid black; }
+}
+
 body {
   background-image: url('./assets/background.png');
   background-size: cover;
@@ -103,6 +108,11 @@ p, h4, h3 {
     cursor: pointer;
 }
 
+button:hover {
+  animation: button-color-change 1s;
+  animation-fill-mode: forwards;
+}
+
 .Weather-weather-detail {
   margin-top: 20px;
 }
@@ -200,11 +210,6 @@ p, h4, h3 {
 .Weather-Table-tables-div {
   margin-bottom: 20px;
   width: 100%;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 @media only screen and (max-width: 585px) {

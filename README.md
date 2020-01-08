@@ -87,7 +87,7 @@ Later, the `dataIdx` is used to slice the array data when creating data table (`
     } 
 ```
 #### Chart.js
-With Chart.js, with every render, old chart is destroyed and a new chart is created.
+With Chart.js, with every render, the old chart is destroyed and a new chart is created.
 ```javascript
   if (window.myBarChart && window.myBarChart !== null) {
     window.myBarChart.destroy();
