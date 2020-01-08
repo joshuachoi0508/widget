@@ -1,4 +1,5 @@
 import React from 'react';
+import WeatherTable from './weather_table.jsx';
 
 class Weather extends React.Component {
   constructor(props){
@@ -8,7 +9,8 @@ class Weather extends React.Component {
       weatherLocation: "",
       lat: "",
       lng: "",
-      weather: {}
+      weather: {},
+      frame: ""
     }
   }
 
@@ -28,9 +30,10 @@ class Weather extends React.Component {
   }
 
   getWeather(){
-    fetch(`https://api.darksky.net/forecast/${process.env.REACT_APP_WEATHER_API_KEY}/${this.state.lat},${this.state.lng}`)
+    fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.REACT_APP_WEATHER_API_KEY}/${this.state.lat},${this.state.lng}`)
       .then(response => response.json())
       .then(data => {
+        debugger;
         this.setState({ 
           weather: data,
           weatherLocation: this.state.location
@@ -62,8 +65,17 @@ class Weather extends React.Component {
 
               <div className="Weather-current-weather-div">
                 <h4>Current Weather</h4>
-                <p>Temperature: {this.state.weather.currently.apparentTemperature}°F</p>
+                <p>{this.state.weather.currently.summary} {this.state.weather.currently.apparentTemperature}°F</p>
               </div>
+
+              <div className="Weather-future-weather-div">
+                <h4>Future Weather</h4>
+                <button onClick={() => this.setState({ frame: "minutely" })}>minutely</button>
+                <button onClick={() => this.setState({ frame: "hourly" })}>Hourly</button>
+                <button onClick={() => this.setState({ frame: "daily" })}>Daily</button>
+              </div>
+
+
             </div>
               :
             <p>Please enter location to get weather information</p>

@@ -80,6 +80,26 @@ h2 {
   font-size: 19px;
 }
 
+.Weather-location-input-div button {
+  margin-top: 10px;
+}
+
+.Weather-future-weather-div {
+  margin: 20px;
+}
+
+.Weather-future-weather-div h4 {
+  margin-bottom: 10px;
+}
+
+.Weather-future-weather-div button {
+  background: black;
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
