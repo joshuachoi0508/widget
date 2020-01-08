@@ -6,7 +6,7 @@ const WeatherTable = (props) => {
   const createLabels = () => {
     let labels = [];
     if (props.weatherInfo.frame === 'hourly') {
-      //Get current 6 weather label and map them to be labels.
+      //Get current label (upto 6) and map them to be labels.
       labels = props.weatherInfo.weather[props.weatherInfo.frame].data.slice(props.weatherInfo.dataIdx, props.weatherInfo.dataIdx + 6).map(weatherInfo => {
         //Convert the time into a string and slice only the hour / minute
         return new Date(weatherInfo.time * 1000).toGMTString().slice(17, 22);
@@ -27,7 +27,7 @@ const WeatherTable = (props) => {
   const createData = () => {
     let data = [];
 
-    //Get current 6 weather data and map them to be labels.
+    //Get weather data (upto 6) and map them to be labels.
     if (props.weatherInfo.frame === 'hourly') {
        //Get hourly temperature
       data = props.weatherInfo.weather[props.weatherInfo.frame].data.slice(props.weatherInfo.dataIdx, props.weatherInfo.dataIdx + 6).map(weatherInfo => {
