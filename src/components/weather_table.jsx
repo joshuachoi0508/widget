@@ -140,7 +140,7 @@ const WeatherTable = (props) => {
       <div className="Weather-future-weather-div">
         <h4>Future Weather</h4>
         <button onClick={() => props.setFrame("hourly")}>Hourly</button>
-        <button onClick={() => props.setFrame("damily")}>Daily</button>
+        <button onClick={() => props.setFrame("daily")}>Daily</button>
       </div>
 
       <h3>Showing {props.weatherInfo.frame} Weather Info</h3>
