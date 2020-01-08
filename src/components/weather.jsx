@@ -11,6 +11,7 @@ class Weather extends React.Component {
       lng: "",
       weather: {},
       frame: "",
+      //dataIdx is used to select which portion of the weather data will be shown.
       dataIdx: 0
     }
 
@@ -19,6 +20,7 @@ class Weather extends React.Component {
     this.setFrame = this.setFrame.bind(this);
   }
 
+  //Get latitude / longtitude from Google Maps Geocode API based on the location the user enters.
   getLatLong(e){
     e.preventDefault();
 
@@ -38,6 +40,8 @@ class Weather extends React.Component {
       })
   }
 
+  //Get current location's weather using darksky api. Uses cors-anywhere.herokuapp.com 
+  //since darksky doesn't allow cors, I'm using https://cors-anywhere.herokuapp.com/ reverse proxy
   getWeather(){
     fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.REACT_APP_WEATHER_API_KEY}/${this.state.lat},${this.state.lng}`)
       .then(response => response.json())
@@ -46,6 +50,7 @@ class Weather extends React.Component {
       })
   }
 
+  //Sets weather the user selected to see "daily" or "hourly" weather
   setFrame(type) {
     this.setState({ frame: type });
   }
@@ -84,9 +89,9 @@ class Weather extends React.Component {
           <button type="submit">Get Weather</button>
         </form>
 
-        <div className="Weather-weather-detail">
+        <div style={{ width: '100%' }}>
           {this.state.weather.currently ? 
-            <div>
+            <div className="Weather-weather-detail">
               <h3>{this.state.weatherLocation}</h3> 
 
               <div className="Weather-current-weather-div">
@@ -100,13 +105,17 @@ class Weather extends React.Component {
                 decrementIdx={this.decrementIdx}
                 setFrame={this.setFrame}
               />
-              <canvas 
-                id="weather-chart"
-                style={{ display: 'none' }}
-              ></canvas>
+
+              <div className="chart-div" style={{width: "90%"}}>
+                <canvas 
+                  id="weather-chart"
+                  style={{ display: 'none' }}
+                ></canvas>
+              </div>
+
             </div>
               :
-            <p>Please enter location to get weather information</p>
+            <p style={{ textAlign: "center" }}>Please enter location to get weather information</p>
           }
         </div>
       </div>

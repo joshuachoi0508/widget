@@ -2,15 +2,18 @@ import React from 'react';
 import Chart from 'chart.js';
 
 const WeatherTable = (props) => {
+  //Creates labels for chartjs chart
   const createLabels = () => {
     let labels = [];
     if (props.weatherInfo.frame === 'hourly') {
-      //Get current 6 weather data and map them to be labels.
+      //Get current 6 weather label and map them to be labels.
       labels = props.weatherInfo.weather[props.weatherInfo.frame].data.slice(props.weatherInfo.dataIdx, props.weatherInfo.dataIdx + 6).map(weatherInfo => {
         //Convert the time into a string and slice only the hour / minute
         return new Date(weatherInfo.time * 1000).toGMTString().slice(17, 22);
       })
-    } else if (props.weatherInfo.frame === 'daily') {
+    } 
+    
+    if (props.weatherInfo.frame === 'daily') {
       //Get current 6 weather data and map them to be labels.
       labels = props.weatherInfo.weather[props.weatherInfo.frame].data.slice(props.weatherInfo.dataIdx, props.weatherInfo.dataIdx + 6).map(weatherInfo => {
         //Convert the time into a string and slice only the month / day
@@ -20,14 +23,20 @@ const WeatherTable = (props) => {
     return labels;
   }
 
+  //Creates data matching the labels for chatsjs chart
   const createData = () => {
     let data = [];
-    
+
+    //Get current 6 weather data and map them to be labels.
     if (props.weatherInfo.frame === 'hourly') {
+       //Get hourly temperature
       data = props.weatherInfo.weather[props.weatherInfo.frame].data.slice(props.weatherInfo.dataIdx, props.weatherInfo.dataIdx + 6).map(weatherInfo => {
         return Math.round(weatherInfo.apparentTemperature);
       })
-    } else if (props.weatherInfo.frame === 'daily') {
+    } 
+    
+    if (props.weatherInfo.frame === 'daily') {
+      //Get average of daily temperature
       data = props.weatherInfo.weather[props.weatherInfo.frame].data.slice(props.weatherInfo.dataIdx, props.weatherInfo.dataIdx + 6).map(weatherInfo => {
         return Math.round((weatherInfo.apparentTemperatureHigh + weatherInfo.apparentTemperatureLow) / 2)
       })
@@ -36,8 +45,10 @@ const WeatherTable = (props) => {
     return data;
   }
 
+  //Creates a table based on the frame and dataIdx
   const createTable = () => {
-    const { dataIdx } = props.weatherInfo.dataIdx;
+    const dataIdx = props.weatherInfo.dataIdx;
+    //diaplayData is used to selected the weather data that will be represented on the table. Upto 6 data sets.
     const displayData = props.weatherInfo.weather[props.weatherInfo.frame].data.slice(dataIdx, dataIdx + 6);
 
     if (props.weatherInfo.frame === "hourly") {
@@ -46,11 +57,14 @@ const WeatherTable = (props) => {
           key={weatherData.time}
           className="Weather-Table-individual-data"
         >
+          {/* Gets each hour's temperature*/}
           <p>{new Date(weatherData.time * 1000).toGMTString().slice(5, 22)}</p>
           <p>{Math.round(Number(weatherData.apparentTemperature))}°F</p>
         </div>
       ))
-    } else if (props.weatherInfo.frame === "daily") {
+    } 
+    
+    if (props.weatherInfo.frame === "daily") {
       return displayData.map(weatherData => (
         <div
           key={weatherData.time}
@@ -113,7 +127,8 @@ const WeatherTable = (props) => {
           color: '#ffffff66'
         }
       }]
-    }
+    },
+    responsive: true
   });
 
   Chart.defaults.global.defaultFontColor = 'white';
