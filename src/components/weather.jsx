@@ -18,6 +18,7 @@ class Weather extends React.Component {
     this.decrementIdx = this.decrementIdx.bind(this);
     this.incrementIdx = this.incrementIdx.bind(this);
     this.setFrame = this.setFrame.bind(this);
+    this.setLocation = this.setLocation.bind(this);
   }
 
   //Get latitude / longtitude from Google Maps Geocode API based on the location the user enters.
@@ -55,6 +56,22 @@ class Weather extends React.Component {
     this.setState({ frame: type });
   }
 
+  setLocation(e) {
+    if (!this.state.weatherLocation) {
+      this.setState({ location: e.currentTarget.value })
+    } else {
+      this.setState({ 
+        location: e.currentTarget.value,
+        weatherLocation: "",
+        weather: {},
+        lng: "",
+        lat: "",
+        frame: "", 
+        dataIdx: 0
+      })
+    }
+  }
+
   decrementIdx() {
     let { dataIdx } = this.state;
 
@@ -83,7 +100,7 @@ class Weather extends React.Component {
         >
           <p>Enter Address</p>
           <textarea 
-            onChange={(e) => this.setState({location: e.currentTarget.value})} 
+            onChange={this.setLocation} 
             value={this.state.location}
           />
           <button type="submit">Get Weather</button>
